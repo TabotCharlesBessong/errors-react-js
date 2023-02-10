@@ -254,3 +254,11 @@ export default dynamic(() => Promise.resolve(CartScreen),{ssr:false});
 
 // The first object for environment is the most important
 
+// a useffect and usestate can as well solve the error
+const [cartItemsCount,setCartItemsCount] = useState(0)
+
+  useEffect(()=>{
+    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
+  },[cart.cartItems])
+  
+//  This is true for situations where the content does not have a control of when it is being updated
